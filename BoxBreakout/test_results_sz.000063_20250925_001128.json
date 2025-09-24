@@ -1,0 +1,230 @@
+{
+  "stock_code": "sz.000063",
+  "test_period": {
+    "start": "2023-08-01",
+    "end": "2025-09-30"
+  },
+  "data_summary": {
+    "total_days": 524,
+    "price_range": {
+      "min": 21.7,
+      "max": 48.0
+    },
+    "volume_range": {
+      "min": 22206040.0,
+      "max": 604031374.0
+    }
+  },
+  "technical_analysis": {
+    "swing_points_count": 37,
+    "boxes_count": 5,
+    "zigzag_points": 38
+  },
+  "signal_validation": {
+    "total_signals": 5,
+    "signal_distribution": {
+      "upward_breakouts": 2,
+      "downward_breakouts": 3
+    },
+    "confirmation_levels": {
+      "weak": 0,
+      "moderate": 5,
+      "strong": 0,
+      "very_strong": 0
+    },
+    "validation_statistics": {
+      "macd_confirmed": 5,
+      "volume_confirmed": 0,
+      "double_confirmed": 0,
+      "macd_confirmation_rate": 100.0,
+      "volume_confirmation_rate": 0.0,
+      "double_confirmation_rate": 0.0
+    },
+    "follow_up_validation": {
+      "total_follow_up": 5,
+      "confirmed_follow_up": 4,
+      "follow_up_success_rate": 80.0
+    },
+    "average_metrics": {
+      "signal_strength": 0.3082128777277435,
+      "breakout_percentage": 1.6678317542832155,
+      "volume_ratio": 1.064971346346268,
+      "risk_reward_ratio": 1.363934199134207
+    },
+    "performance_highlights": {
+      "best_favorable_move": 30.30418250950571,
+      "worst_adverse_move": 7.467532467532467,
+      "best_signal_id": "upward_breakout_281_1727308800",
+      "worst_signal_id": "downward_breakout_99_1703548800"
+    }
+  },
+  "boxes": [
+    {
+      "start_idx": 180,
+      "end_idx": 210,
+      "resistance": 28.74,
+      "support": 26.79,
+      "duration": 30,
+      "volatility": 0.07057716436637389,
+      "strength": 10.896495451158836,
+      "macd_score": 0.0,
+      "volume_score": 1.8964954511588363
+    },
+    {
+      "start_idx": 245,
+      "end_idx": 275,
+      "resistance": 26.16,
+      "support": 23.53,
+      "duration": 30,
+      "volatility": 0.10583217083378041,
+      "strength": 9.199420966649193,
+      "macd_score": 0.0,
+      "volume_score": 1.199420966649193
+    },
+    {
+      "start_idx": 425,
+      "end_idx": 455,
+      "resistance": 33.17,
+      "support": 30.98,
+      "duration": 30,
+      "volatility": 0.06865921203887557,
+      "strength": 8.913055101956694,
+      "macd_score": 0.0,
+      "volume_score": 1.913055101956693
+    },
+    {
+      "start_idx": 65,
+      "end_idx": 95,
+      "resistance": 27.92,
+      "support": 25.08,
+      "duration": 30,
+      "volatility": 0.10705400447314865,
+      "strength": 7.670322906883685,
+      "macd_score": 0.0,
+      "volume_score": 1.6703229068836851
+    },
+    {
+      "start_idx": 20,
+      "end_idx": 50,
+      "resistance": 35.45,
+      "support": 31.47,
+      "duration": 30,
+      "volatility": 0.1188036058983902,
+      "strength": 6.433096041716238,
+      "macd_score": 0.0,
+      "volume_score": 1.4330960417162384
+    }
+  ],
+  "signals": [
+    {
+      "signal_id": "downward_breakout_216_1719273600",
+      "signal_type": "downward_breakout",
+      "timestamp": "2024-06-25T00:00:00",
+      "price": 26.46,
+      "breakout_percentage": 1.2318029115341482,
+      "confirmation_level": "moderate",
+      "signal_strength": 0.22689288736224722,
+      "macd_confirmed": true,
+      "volume_confirmed": "False",
+      "volume_ratio": 0.9219142559641171,
+      "risk_reward_ratio": 0.6072727272727362,
+      "follow_up_confirmed": "False",
+      "max_favorable_move": null,
+      "max_adverse_move": 5.706727135298556,
+      "fibonacci_targets": {
+        "127.2%": 26.2596,
+        "161.8%": 25.5849,
+        "261.8%": 23.634900000000002,
+        "423.6%": 20.4798
+      }
+    },
+    {
+      "signal_id": "upward_breakout_281_1727308800",
+      "signal_type": "upward_breakout",
+      "timestamp": "2024-09-26T00:00:00",
+      "price": 26.3,
+      "breakout_percentage": 0.5351681957186566,
+      "confirmation_level": "moderate",
+      "signal_strength": 0.34281345565749255,
+      "macd_confirmed": true,
+      "volume_confirmed": "False",
+      "volume_ratio": 1.2280375381986015,
+      "risk_reward_ratio": 4.109714285714268,
+      "follow_up_confirmed": "True",
+      "max_favorable_move": 30.30418250950571,
+      "max_adverse_move": null,
+      "fibonacci_targets": {
+        "127.2%": 26.87536,
+        "161.8%": 27.785339999999998,
+        "261.8%": 30.41534,
+        "423.6%": 34.67068
+      }
+    },
+    {
+      "signal_id": "upward_breakout_470_1752192000",
+      "signal_type": "upward_breakout",
+      "timestamp": "2025-07-11T00:00:00",
+      "price": 33.44,
+      "breakout_percentage": 0.8139885438649263,
+      "confirmation_level": "moderate",
+      "signal_strength": 0.19934363706229552,
+      "macd_confirmed": true,
+      "volume_confirmed": "False",
+      "volume_ratio": 1.2349034570900084,
+      "risk_reward_ratio": 1.2062222222222605,
+      "follow_up_confirmed": "True",
+      "max_favorable_move": 0.17942583732058098,
+      "max_adverse_move": 0.7476076555023924,
+      "fibonacci_targets": {
+        "127.2%": 33.76568,
+        "161.8%": 34.52342,
+        "261.8%": 36.713420000000006,
+        "423.6%": 40.256840000000004
+      }
+    },
+    {
+      "signal_id": "downward_breakout_99_1703548800",
+      "signal_type": "downward_breakout",
+      "timestamp": "2023-12-26T00:00:00",
+      "price": 24.64,
+      "breakout_percentage": 1.7543859649122715,
+      "confirmation_level": "moderate",
+      "signal_strength": 0.2533493938647067,
+      "macd_confirmed": true,
+      "volume_confirmed": "False",
+      "volume_ratio": 1.1104705571032092,
+      "risk_reward_ratio": 0.7556363636363763,
+      "follow_up_confirmed": "True",
+      "max_favorable_move": null,
+      "max_adverse_move": 7.467532467532467,
+      "fibonacci_targets": {
+        "127.2%": 24.307519999999997,
+        "161.8%": 23.324879999999997,
+        "261.8%": 20.484879999999993,
+        "423.6%": 15.889759999999987
+      }
+    },
+    {
+      "signal_id": "downward_breakout_51_1697673600",
+      "signal_type": "downward_breakout",
+      "timestamp": "2023-10-19T00:00:00",
+      "price": 30.21,
+      "breakout_percentage": 4.003813155386076,
+      "confirmation_level": "moderate",
+      "signal_strength": 0.5186650146919753,
+      "macd_confirmed": true,
+      "volume_confirmed": "False",
+      "volume_ratio": 0.8295309233754036,
+      "risk_reward_ratio": 0.1408253968253948,
+      "follow_up_confirmed": "True",
+      "max_favorable_move": 13.306852035749749,
+      "max_adverse_move": null,
+      "fibonacci_targets": {
+        "127.2%": 30.387439999999998,
+        "161.8%": 29.010359999999995,
+        "261.8%": 25.03035999999999,
+        "423.6%": 18.590719999999983
+      }
+    }
+  ]
+}
