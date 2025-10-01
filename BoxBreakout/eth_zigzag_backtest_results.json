@@ -1,0 +1,70 @@
+{
+  "OKX标准参数": {
+    "parameters": {
+      "deviation": 5.0,
+      "depth": 10
+    },
+    "swing_points_count": 3,
+    "levels_count": 0,
+    "signals_count": 0,
+    "backtest": {
+      "total_trades": 0,
+      "win_rate": 0,
+      "total_return": 0,
+      "max_drawdown": 0,
+      "profit_loss_ratio": 0,
+      "final_portfolio_value": 10000
+    }
+  },
+  "用户推荐参数": {
+    "parameters": {
+      "deviation": 1.0,
+      "depth": 10
+    },
+    "swing_points_count": 75,
+    "levels_count": 9,
+    "signals_count": 1,
+    "backtest": {
+      "total_trades": 1,
+      "win_rate": 0.0,
+      "total_return": -0.014811434061974433,
+      "max_drawdown": 0.014811434061974433,
+      "profit_loss_ratio": 0,
+      "final_portfolio_value": 9851.885659380256
+    }
+  },
+  "原代码库参数": {
+    "parameters": {
+      "deviation": 3.5,
+      "depth": 6
+    },
+    "swing_points_count": 11,
+    "levels_count": 2,
+    "signals_count": 1,
+    "backtest": {
+      "total_trades": 1,
+      "win_rate": 0.0,
+      "total_return": -0.008490178120853125,
+      "max_drawdown": 0.008490178120853125,
+      "profit_loss_ratio": 0,
+      "final_portfolio_value": 9915.098218791469
+    }
+  },
+  "高敏感度参数": {
+    "parameters": {
+      "deviation": 0.5,
+      "depth": 5
+    },
+    "swing_points_count": 257,
+    "levels_count": 12,
+    "signals_count": 3,
+    "backtest": {
+      "total_trades": 3,
+      "win_rate": 0.0,
+      "total_return": -0.046421556616498126,
+      "max_drawdown": 0.046421556616498126,
+      "profit_loss_ratio": 0,
+      "final_portfolio_value": 9535.784433835019
+    }
+  }
+}

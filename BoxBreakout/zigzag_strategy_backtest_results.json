@@ -1,0 +1,83 @@
+{
+  "OKX标准参数": {
+    "config": {
+      "name": "OKX标准参数",
+      "deviation": 5.0,
+      "depth": 10,
+      "description": "OKX官方标准参数"
+    },
+    "performance": {
+      "total_trades": 5,
+      "winning_trades": 2,
+      "losing_trades": 3,
+      "win_rate": 40.0,
+      "total_return": -0.5968747175704193,
+      "total_pnl": -596.8747175704221,
+      "avg_win": 653.0352187431895,
+      "avg_loss": 634.3150516856003,
+      "profit_factor": 1.0295124118651182,
+      "max_drawdown": 1.5940012581291958,
+      "sharpe_ratio": -0.38912892672952787,
+      "final_capital": 99403.12528242958
+    },
+    "signal_stats": {
+      "swing_points": 38,
+      "levels": 7,
+      "signals": 48
+    }
+  },
+  "用户推荐参数": {
+    "config": {
+      "name": "用户推荐参数",
+      "deviation": 1.0,
+      "depth": 10,
+      "description": "用户测试效果良好的参数"
+    },
+    "performance": {
+      "total_trades": 7,
+      "winning_trades": 2,
+      "losing_trades": 5,
+      "win_rate": 28.57142857142857,
+      "total_return": -1.081898046383183,
+      "total_pnl": -1081.8980463831867,
+      "avg_win": 756.4212245764355,
+      "avg_loss": 518.9480991072115,
+      "profit_factor": 1.457604769875385,
+      "max_drawdown": 1.9922197006256124,
+      "sharpe_ratio": -0.597458870048352,
+      "final_capital": 98918.10195361682
+    },
+    "signal_stats": {
+      "swing_points": 48,
+      "levels": 8,
+      "signals": 53
+    }
+  },
+  "原代码库参数": {
+    "config": {
+      "name": "原代码库参数",
+      "deviation": 3.5,
+      "depth": 6,
+      "description": "原代码库使用的参数"
+    },
+    "performance": {
+      "total_trades": 22,
+      "winning_trades": 8,
+      "losing_trades": 14,
+      "win_rate": 36.36363636363637,
+      "total_return": -2.249748095969073,
+      "total_pnl": -2249.74809596911,
+      "avg_win": 745.4044088837373,
+      "avg_loss": 586.641669074215,
+      "profit_factor": 1.2706298379044016,
+      "max_drawdown": 5.6515984121223735,
+      "sharpe_ratio": -0.5089730194622719,
+      "final_capital": 97750.25190403093
+    },
+    "signal_stats": {
+      "swing_points": 59,
+      "levels": 20,
+      "signals": 169
+    }
+  }
+}

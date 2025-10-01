@@ -37,7 +37,7 @@ def parse_time_column(inp):
         minute = int(inp[14:16])
     else:
         raise Exception(f"unknown time column from csv:{inp}")
-    return CTime(year, month, day, hour, minute)
+    return CTime(year, month, day, hour, minute, auto=False)  # 设置auto=False
 
 
 class CSV_API(CCommonStockApi):

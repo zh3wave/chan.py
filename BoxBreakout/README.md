@@ -45,11 +45,24 @@ pip install pandas numpy matplotlib baostock
 
 ### 基本使用
 ```python
-# 运行集成测试
+# 运行V3.1进阶分析器（推荐）
+python enhanced_analyzer_advanced.py
+
+# 运行v2.0简化版本
 python integrated_test.py
 
 # 默认测试股票：sz.000063（中兴通讯）
 # 可修改代码中的股票代码进行其他股票测试
+```
+
+### V3.1进阶版特性
+```python
+# V3.1版本新增功能：
+- 箱体重叠检测和聚合：自动合并重叠箱体
+- 混合算法：Enhanced优先，Simple补充
+- ZigZag边界优化：使用Simple的ZigZag点作为边界
+- 智能冲突处理：避免箱体冲突和重复
+- 完整信号分析：包含斐波那契目标位计算
 ```
 
 ### 自定义参数
@@ -98,23 +111,54 @@ BoxBreakout/
 ├── integrated_test.py          # 主测试脚本（v2.0简化版）
 ├── enhanced_analyzer.py        # 增强分析器
 ├── volume_ratio_analyzer.py    # 量比分析器
-├── strategy_framework_v2.md    # 策略框架文档
-├── README.md                   # 本文档
+## 📁 文件结构
+
+```
+BoxBreakout/
+├── enhanced_analyzer_advanced.py  # V3.1进阶分析器（当前版本）
+├── integrated_test.py             # 主测试脚本（v2.0简化版）
+├── enhanced_analyzer.py           # 增强分析器
+├── volume_ratio_analyzer.py       # 量比分析器
+├── versions/                      # 版本备份目录
+│   ├── VERSION_HISTORY.md         # 版本历史记录
+│   ├── enhanced_analyzer_advanced_v3.1_*.py  # V3.1版本备份
+│   ├── enhanced_analyzer_v1.0_*.py           # V1.0版本备份
+│   └── integrated_test_v2.0.py               # v2.0版本备份
+├── charts/                        # 生成的图表文件
+├── strategy_framework_v2.md       # 策略框架文档
+├── README.md                      # 本文档
 └── 生成的图表和数据文件/
 ```
 
 ## 🔄 版本历史
 
-- **v1.0**：初始版本，包含MACD确认机制和6分图布局
+- **V3.1**：进阶版本（当前版本）
+  - ✅ 实现箱体重叠检测和聚合功能
+  - ✅ 混合算法：Enhanced优先，Simple补充
+  - ✅ 重叠箱体使用Simple边界（ZigZag点）
+  - ✅ 智能冲突处理和强度增强
+  - ✅ 统一版本命名规范（V1.0, V1.1格式）
+  - ✅ 完整的突破信号分析和斐波那契目标位
 - **v2.0**：策略重构版本
   - ✅ 移除MACD依赖
   - ✅ 简化为2分图布局
   - ✅ 优化图表视觉效果
   - ✅ 保持核心功能完整
+- **v1.0**：初始版本，包含MACD确认机制和6分图布局
 
 ## 📊 测试案例
 
-### sz.000063（中兴通讯）测试结果
+### sz.000063（中兴通讯）V3.1测试结果
+- **测试周期**：2024年全年数据
+- **箱体识别**：8个箱体（聚合前10个）
+- **Enhanced识别**：5个箱体
+- **Simple补充**：1个箱体
+- **聚合箱体**：2个重叠箱体成功合并
+- **突破信号**：8个有效突破点
+- **聚合效果**：成功减少重叠，提高分析精度
+- **图表输出**：生成完整的技术分析图表
+
+### sz.000063（中兴通讯）v2.0测试结果
 - **测试周期**：2024年全年数据
 - **突破信号**：识别多个有效突破点
 - **成功率**：后续验证成功率80%
@@ -137,5 +181,5 @@ BoxBreakout/
 
 ---
 
-*最后更新：2025年1月25日*
-*版本：v2.0*
+*最后更新：2025年9月26日*
+*版本：V3.1*

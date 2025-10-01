@@ -7,6 +7,7 @@ import baostock as bs
 from scipy.signal import argrelextrema
 from typing import List, Tuple, Dict, Optional
 import warnings
+import os
 warnings.filterwarnings('ignore')
 
 # 设置中文字体
@@ -116,48 +117,59 @@ class EnhancedBoxBreakoutAnalyzer:
         
         return retracement_levels, extension_levels
     
-    def zigzag_algorithm(self, prices: np.array, deviation_pct: float = 5.0):
-        """ZigZag算法识别摆动点"""
+    def zigzag_algorithm(self, highs: np.array, lows: np.array, deviation_pct: float = 3.5):
+        """
+        ZigZag算法识别价格摆动点，使用最高价和最低价
+        优化版本：更精确地识别真实的高低点
+        """
         swing_points = []
-        
-        if len(prices) < 3:
-            return swing_points, []
-            
-        # 初始化
-        last_swing_idx = 0
-        last_swing_price = prices[0]
-        trend_direction = None
         zigzag_line = []
         
-        for i in range(1, len(prices)):
-            current_price = prices[i]
-            price_change_pct = abs(current_price - last_swing_price) / last_swing_price * 100
+        if len(highs) < 3 or len(lows) < 3:
+            return swing_points, zigzag_line
+        
+        # 寻找局部极值点
+        high_indices = argrelextrema(highs, np.greater, order=3)[0]
+        low_indices = argrelextrema(lows, np.less, order=3)[0]
+        
+        # 合并并排序极值点
+        all_extrema = []
+        for idx in high_indices:
+            all_extrema.append((idx, highs[idx], 'high'))
+        for idx in low_indices:
+            all_extrema.append((idx, lows[idx], 'low'))
+        
+        all_extrema.sort(key=lambda x: x[0])
+        
+        if not all_extrema:
+            return swing_points, zigzag_line
+        
+        # 过滤掉幅度不够的摆动
+        filtered_points = [all_extrema[0]]
+        
+        for current in all_extrema[1:]:
+            last = filtered_points[-1]
+            
+            # 计算价格变化幅度
+            price_change_pct = abs(current[1] - last[1]) / last[1] * 100
             
             if price_change_pct >= deviation_pct:
-                if current_price > last_swing_price:
-                    if trend_direction == 'down':
-                        swing_points.append({
-                            'index': last_swing_idx,
-                            'price': last_swing_price,
-                            'type': 'low'
-                        })
-                        zigzag_line.append((last_swing_idx, last_swing_price))
-                    trend_direction = 'up'
+                # 如果类型相同，保留更极端的点
+                if current[2] == last[2]:
+                    if (current[2] == 'high' and current[1] > last[1]) or \
+                       (current[2] == 'low' and current[1] < last[1]):
+                        filtered_points[-1] = current
                 else:
-                    if trend_direction == 'up':
-                        swing_points.append({
-                            'index': last_swing_idx,
-                            'price': last_swing_price,
-                            'type': 'high'
-                        })
-                        zigzag_line.append((last_swing_idx, last_swing_price))
-                    trend_direction = 'down'
-                
-                last_swing_idx = i
-                last_swing_price = current_price
+                    filtered_points.append(current)
         
-        # 添加最后一个点
-        zigzag_line.append((last_swing_idx, last_swing_price))
+        # 转换为摆动点格式
+        for point in filtered_points:
+            swing_points.append({
+                'index': point[0],
+                'price': point[1],
+                'type': point[2]
+            })
+            zigzag_line.append((point[0], point[1]))
         
         return swing_points, zigzag_line
     
@@ -172,11 +184,11 @@ class EnhancedBoxBreakoutAnalyzer:
         window_size = min_duration
         volume_ratio = self.calculate_volume_ratio(volumes)
         
-        for i in range(window_size, len(prices) - window_size, 5):
-            window_prices = prices[i-window_size:i+window_size]
-            window_volumes = volumes[i-window_size:i+window_size]
-            window_macd = macd_data['macd'][i-window_size:i+window_size]
-            window_vol_ratio = volume_ratio[i-window_size:i+window_size]
+        for i in range(window_size, len(prices), 5):
+            window_prices = prices[i-window_size:i]
+            window_volumes = volumes[i-window_size:i]
+            window_macd = macd_data['macd'][i-window_size:i]
+            window_vol_ratio = volume_ratio[i-window_size:i]
             
             window_high = np.max(window_prices)
             window_low = np.min(window_prices)
@@ -365,7 +377,7 @@ class EnhancedBoxBreakoutAnalyzer:
         volume_ratio = self.calculate_volume_ratio(volumes)
         
         # 执行分析
-        swing_points, zigzag_line = self.zigzag_algorithm(prices)
+        swing_points, zigzag_line = self.zigzag_algorithm(highs, lows)
         boxes = self.identify_boxes_with_indicators(prices, volumes, macd_data)
         breakout_signals = self.detect_breakout_signals(boxes, prices, volumes, macd_data)
         
@@ -388,10 +400,17 @@ class EnhancedBoxBreakoutAnalyzer:
         
         plt.tight_layout()
         
-        # 保存图表
-        plt.savefig('enhanced_box_breakout_analysis.png', dpi=300, bbox_inches='tight')
-        plt.savefig('enhanced_box_breakout_analysis.jpg', dpi=300, bbox_inches='tight')
-        print("增强版分析图表已保存")
+        # 确保charts目录存在
+        charts_dir = 'charts'
+        if not os.path.exists(charts_dir):
+            os.makedirs(charts_dir)
+        
+        # 保存图表到charts目录
+        png_path = os.path.join(charts_dir, 'enhanced_box_breakout_analysis.png')
+        jpg_path = os.path.join(charts_dir, 'enhanced_box_breakout_analysis.jpg')
+        plt.savefig(png_path, dpi=300, bbox_inches='tight')
+        plt.savefig(jpg_path, dpi=300, bbox_inches='tight')
+        print("增强版分析图表已保存到charts目录")
         
         plt.show()
         
@@ -435,12 +454,29 @@ class EnhancedBoxBreakoutAnalyzer:
             width_timedelta = end_date - start_date
             height = box['resistance'] - box['support']
             
+            # 绘制箱体矩形
             rect = plt.Rectangle((start_date, box['support']), 
                                width_timedelta, height,
                                linewidth=2, edgecolor='orange', facecolor='yellow', alpha=0.2)
             ax.add_patch(rect)
             
-            # 标注箱体信息
+            # 绘制关键区域的支撑阻力线（延伸到箱体后一段时间）
+            extension_days = min(30, len(dates) - box['end_idx'] - 1)  # 最多延伸30天
+            if extension_days > 0:
+                extended_end_idx = min(box['end_idx'] + extension_days, len(dates) - 1)
+                extended_end_date = dates[extended_end_idx]
+                
+                # 支撑线
+                ax.plot([start_date, extended_end_date], 
+                       [box['support'], box['support']], 
+                       color='blue', linestyle='--', linewidth=1.5, alpha=0.8, label='支撑线' if i == 0 else "")
+                
+                # 阻力线
+                ax.plot([start_date, extended_end_date], 
+                       [box['resistance'], box['resistance']], 
+                       color='red', linestyle='--', linewidth=1.5, alpha=0.8, label='阻力线' if i == 0 else "")
+            
+            # 箱体标注
             mid_price = (box['resistance'] + box['support']) / 2
             mid_time = start_date + width_timedelta / 2
             ax.text(mid_time, mid_price, 

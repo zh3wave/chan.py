@@ -16,6 +16,7 @@ import baostock as bs
 from scipy.signal import argrelextrema
 from typing import List, Tuple, Dict, Optional
 import warnings
+import os
 warnings.filterwarnings('ignore')
 
 # 设置中文字体
@@ -591,8 +592,17 @@ class SimplifiedBoxBreakoutAnalyzer:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"simplified_test_{self.stock_code}_{timestamp}"
         
-        plt.savefig(f"{filename}.png", dpi=300, bbox_inches='tight')
-        plt.savefig(f"{filename}.jpg", dpi=300, bbox_inches='tight')
+        # 确保charts目录存在
+        charts_dir = 'charts'
+        if not os.path.exists(charts_dir):
+            os.makedirs(charts_dir)
+        
+        # 保存图表到charts目录
+        png_path = os.path.join(charts_dir, f"{filename}.png")
+        jpg_path = os.path.join(charts_dir, f"{filename}.jpg")
+        plt.savefig(png_path, dpi=300, bbox_inches='tight')
+        plt.savefig(jpg_path, dpi=300, bbox_inches='tight')
+        print(f"   简化版分析图已保存到charts目录: {filename}.png/.jpg")
         plt.show()
         
         # 打印分析结果

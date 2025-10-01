@@ -66,8 +66,8 @@ class IntegratedBoxBreakoutTest:
         macd_data = self.analyzer.calculate_macd(prices)
         volume_ratio = self.analyzer.calculate_volume_ratio(volumes)
         
-        # ZigZag分析
-        swing_points, zigzag_line = self.analyzer.zigzag_algorithm(prices)
+        # ZigZag分析 - 使用最高价最低价
+        swing_points, zigzag_line = self.analyzer.zigzag_algorithm(highs, lows)
         print(f"   识别摆动点: {len(swing_points)} 个")
         
         # 箱体识别
@@ -177,11 +177,18 @@ class IntegratedBoxBreakoutTest:
         
         plt.tight_layout()
         
-        # 保存图表
+        # 确保charts目录存在
+        charts_dir = 'charts'
+        if not os.path.exists(charts_dir):
+            os.makedirs(charts_dir)
+        
+        # 保存图表到charts目录
         filename = f'integrated_test_{self.stock_code}_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
-        plt.savefig(f'{filename}.png', dpi=300, bbox_inches='tight')
-        plt.savefig(f'{filename}.jpg', dpi=300, bbox_inches='tight')
-        print(f"   综合分析图已保存: {filename}.png/.jpg")
+        png_path = os.path.join(charts_dir, f'{filename}.png')
+        jpg_path = os.path.join(charts_dir, f'{filename}.jpg')
+        plt.savefig(png_path, dpi=300, bbox_inches='tight')
+        plt.savefig(jpg_path, dpi=300, bbox_inches='tight')
+        print(f"   综合分析图已保存到charts目录: {filename}.png/.jpg")
         
         plt.show()
     
